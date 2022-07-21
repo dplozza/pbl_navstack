@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(jackal_cartographer_navigation)
+project(pbl_navstack)
 
 find_package(catkin REQUIRED COMPONENTS)
 
