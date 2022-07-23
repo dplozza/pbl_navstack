@@ -1,4 +1,20 @@
-# Jackal Cartographer Demo
+# PBL navstack test
+
+This package provides configuration and lunch files to enable navigation of the unitree A1 robot using Google Cartographer SLAM and the ROS navigation stack.
+
+Cartographer is also used for localization.
+
+# install instructions
+
+Follow the instructions to install Google Cartographer ROS [here] (https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html). You can choose another name for the catkin worskpace instead of "catkin_ws".
+- Usually an error appears when trying to perform 'rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y'. In this case remove the line 46 <depend>libabsl-dev</depend> from the file 'src/cartographer/package.xml'  and then repeat the command.
+- IMPORTANT: follow the instructions up to the second to last step, but do NOT perform the isntallation 'catkin_make_isolated --install --use-ninja'.
+
+Then do the following:
+
+
+
+# [OLD SHIT]Jackal Cartographer Demo
 
 This tutorial shows you how to use [move_base](http://wiki.ros.org/move_base) with [Google Cartographer](https://github.com/googlecartographer) to perform autonomous planning and movement with simultaneous localization and mapping (SLAM), on a simulated Jackal, or a factory-standard Jackal with a laser scanner publishing on the */front/scan* topic.
 

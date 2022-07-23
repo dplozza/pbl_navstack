@@ -47,13 +47,24 @@ MAP_BUILDER.use_trajectory_builder_2d = true
 
 TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
 
-TRAJECTORY_BUILDER_2D.submaps.num_range_data = 35 -- default is 90 !!! was default
+--TRAJECTORY_BUILDER_2D.submaps.num_range_data = 35 -- default is 90 !!! was default
 
 TRAJECTORY_BUILDER_2D.min_range = 0.5
 TRAJECTORY_BUILDER_2D.max_range = 10.--20. -- default 30 !!! was default
 TRAJECTORY_BUILDER_2D.min_z = 0.
-TRAJECTORY_BUILDER_2D.missing_data_ray_length = 10. -- !!! was 2.
+--TRAJECTORY_BUILDER_2D.missing_data_ray_length = 10. -- !!! was 2.
 TRAJECTORY_BUILDER_2D.use_imu_data = false
+
+-- localization
+-- combination max..to_keep 5, optim every 10, min score 0.65
+TRAJECTORY_BUILDER.pure_localization_trimmer = {
+  max_submaps_to_keep = 5,
+}
+POSE_GRAPH.optimize_every_n_nodes = 20 -- seems values lower than 20 have increasingly worse results
+POSE_GRAPH.constraint_builder.min_score = 0.65 -- 0.55 temporarely completely fails
+TRAJECTORY_BUILDER_2D.submaps.num_range_data = 10 --25
+--TRAJECTORY_BUILDER_2D.max_range = 15.
+TRAJECTORY_BUILDER_2D.missing_data_ray_length = 10
 
 -- remove artifact in middle of walking path
 -- TRAJECTORY_BUILDER_2D.min_range has little effect
@@ -77,8 +88,8 @@ POSE_GRAPH.optimization_problem.huber_scale = 1e2
 
 
 --POSE_GRAPH.optimization_problem.huber_scale = 1e2 -- default 1e1
-POSE_GRAPH.optimize_every_n_nodes = 90 -- default  90. Very high value: never perform global optimization
-POSE_GRAPH.constraint_builder.min_score = 0.65 --default 0.55
+--POSE_GRAPH.optimize_every_n_nodes = 90 -- default  90. Very high value: never perform global optimization
+--POSE_GRAPH.constraint_builder.min_score = 0.65 --default 0.55
 
 
 -----------------TUNE THESE PARAMETERS FOR LOW LATENCY-------------------------------

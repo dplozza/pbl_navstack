@@ -17,6 +17,8 @@
 <launch>
   <param name="/use_sim_time" value="true" />
 
+  <arg name="start_time" default="0"/>
+
   
   <!-- <param name="robot_description"
     textfile="$(find cartographer_ros)/urdf/backpack_2d.urdf" />
@@ -27,7 +29,8 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find pbl_navstack)/config
-          -configuration_basename pblnav_v1.lua"
+          -configuration_basename pblnav_v1_loc.lua
+          -load_state_filename $(env HOME)/bagfiles/$(arg load_state_filename)"
       output="screen">
     <!-- <remap from="echoes" to="horizontal_laser_2d" /> -->
   </node>
@@ -46,5 +49,5 @@
 
 
   <node name="playbag" pkg="rosbag" type="play"
-      args="--clock $(env HOME)/bagfiles/$(arg bagfile) -r 6" />
+      args="--clock $(env HOME)/bagfiles/$(arg bagfile) -r 1 -s $(arg start_time)" />
 </launch>
